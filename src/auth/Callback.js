@@ -35,7 +35,7 @@ const Callback = (props) => {
             })
     }, []);
 
-    return <Redirect to="/home" />;
+    return <Redirect to="/" />;
 };
 
 export default Callback;
