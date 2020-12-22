@@ -36,12 +36,9 @@ const HomePageView = () => {
 
 	  return(
 		
-		<div>This is the HomePage</div>
+		<h1 className="text-red-600">This is the HomePage</h1>
    	
 	  )
-	  
-	
-
-}
+};
 
 export default HomePage;
