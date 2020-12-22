@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-import React, {useEffect} from 'react'
-import axios from 'axios';
-import Header from '../components/Header'
-=======
 import React, {useContext, useEffect} from "react";
 import axios from "axios";
 import {CALLBACK_URL, CLIENT_ID, SCOPES} from '../auth/constants';
 import {LogInContext} from "../App"
 
->>>>>>> 3d47567dc2020875d14b40808919ab0620615489
+
 const HomePage = () => {
 	const isLoggedIn = useContext(LogInContext)
 
@@ -17,15 +12,7 @@ const HomePage = () => {
 	} else {
 		const scopes = SCOPES.join(" ");
 
-<<<<<<< HEAD
-    return (
-        <div>
-            This is the HomePage 
-                 <Header/>
-        </div>
-    )
-}
-=======
+
 		window.location.replace("https://accounts.spotify.com/authorize" +
 			'?response_type=code' +
 			'&client_id=' + CLIENT_ID +
@@ -34,7 +21,7 @@ const HomePage = () => {
 		return null
 	}
 };
->>>>>>> 3d47567dc2020875d14b40808919ab0620615489
+
 
 const HomePageView = () => {
 
