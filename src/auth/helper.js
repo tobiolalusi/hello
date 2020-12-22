@@ -2,7 +2,9 @@ import axios from 'axios';
 import {LOCAL_STORAGE_SPOTIFY_AUTH} from "./constants";
 
 const getLocalStorageSpotifyAuth = () => {
-	return localStorage.getItem(LOCAL_STORAGE_SPOTIFY_AUTH);
+	const spotifyAuthString = localStorage.getItem(LOCAL_STORAGE_SPOTIFY_AUTH);
+	const spotifyAuth = JSON.parse(spotifyAuthString);
+	return spotifyAuth.access_token;
 }
 
 export const axiosRequestInterceptor = () => {

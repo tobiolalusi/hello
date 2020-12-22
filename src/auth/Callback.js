@@ -29,14 +29,13 @@ const Callback = (props) => {
                 "Authorization": "Basic " + btoa(CLIENT_ID + ":" + CLIENT_SECRET)
             }
         })
-            .then((response) => localStorage.setItem(LOCAL_STORAGE_SPOTIFY_AUTH, response.data))
+            .then((response) => localStorage.setItem(LOCAL_STORAGE_SPOTIFY_AUTH, JSON.stringify(response.data)))
             .catch((error) => {
                 throw "Spotify returned an error: " + error;
             })
     }, []);
 
-    return "This is callback"
-    // return <Redirect to="/home" />;
+    return <Redirect to="/home" />;
 };
 
 export default Callback;
