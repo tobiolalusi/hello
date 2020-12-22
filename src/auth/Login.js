@@ -1,21 +1,19 @@
-import  {useEffect, useState} from 'react';
-import { CLIENT_ID, CLIENT_SECRET, SCOPES, CALLBACK_URL } from './constants';
+import { CLIENT_ID, SCOPES, CALLBACK_URL } from './constants';
 
 const Login = () => {
 
 	const scopes = SCOPES.join(" ");
 
-	const logintoApi = () => {
-		fetch("https://accounts.spotify.com/authorize"+
+	const login = () => {
+		window.location.replace("https://accounts.spotify.com/authorize"+
 		'?response_type=code' +
 		'&client_id=' + CLIENT_ID +
 		(scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-		'&redirect_uri=' + encodeURIComponent(CALLBACK_URL))
-		.then()
+		'&redirect_uri=' + encodeURIComponent(CALLBACK_URL));
 	};
 
 	return (
-		<button >
+		<button onClick={login}>
 			Log in
 		</button>
 	)
