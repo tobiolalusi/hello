@@ -3,7 +3,7 @@ import axios from 'axios';
 import queryString from 'querystring';
 import { Redirect } from "react-router-dom";
 import {parseQuery} from "../util";
-import {CALLBACK_URL, CLIENT_ID, CLIENT_SECRET} from "./constants";
+import {CALLBACK_URL, CLIENT_ID, CLIENT_SECRET, LOCAL_STORAGE_SPOTIFY_AUTH} from "./constants";
 
 const Callback = (props) => {
     const queryParams = queryString.parse(props.location.search.substring(1));
@@ -29,7 +29,7 @@ const Callback = (props) => {
                 "Authorization": "Basic " + btoa(CLIENT_ID + ":" + CLIENT_SECRET)
             }
         })
-            .then((response) => localStorage.setItem("spotify_auth", response.data))
+            .then((response) => localStorage.setItem(LOCAL_STORAGE_SPOTIFY_AUTH, response.data))
             .catch((error) => {
                 throw "Spotify returned an error: " + error;
             })
