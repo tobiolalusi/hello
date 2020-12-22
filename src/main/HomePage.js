@@ -1,22 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
-import { Redirect } from "react-router";
 import { CLIENT_ID, SCOPES, CALLBACK_URL } from '../auth/constants';
+import {LogInContext} from "../App"
 
 const HomePage = () => {
-  const isLoggedIn = false;
-
+  const isLoggedIn = useContext(LogInContext)
+	console.log(isLoggedIn)
   if (isLoggedIn) {
 	return <HomePageView />
   }
   else{
 	const scopes = SCOPES.join(" ");
-	
-	return window.location.replace("https://accounts.spotify.com/authorize"+
+
+	window.location.replace("https://accounts.spotify.com/authorize"+
 	'?response_type=code' +
 	'&client_id=' + CLIENT_ID +
 	(scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
 	'&redirect_uri=' + encodeURIComponent(CALLBACK_URL));
+	return null
   }
 };
 
@@ -33,7 +34,13 @@ const HomePageView = () => {
 		  });
 	  }, []);
 
-	return <div>This is the HomePage</div>;
+	  return(
+		
+		<div>This is the HomePage</div>
+   	
+	  )
+	  
+	
 
 }
 
