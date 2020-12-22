@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import axios from 'axios';
-
+import Header from '../components/Header'
 const HomePage = () => {
 
     useEffect(() => {
@@ -16,7 +16,8 @@ const HomePage = () => {
 
     return (
         <div>
-        This is the HomePage 
+            This is the HomePage 
+                 <Header/>
         </div>
     )
 }
