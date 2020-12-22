@@ -5,7 +5,7 @@ import {LogInContext} from "../App"
 
 const HomePage = () => {
   const isLoggedIn = useContext(LogInContext)
-	console.log(isLoggedIn)
+
   if (isLoggedIn) {
 	return <HomePageView />
   }
