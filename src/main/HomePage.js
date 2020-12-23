@@ -88,7 +88,6 @@ const HomePageView = () => {
       .get(`https://api.spotify.com/v1/me/player/recently-played?limit=10`)
 
       .then((res) => {
-        console.log(res.data.items);
         if (res.data.items) {
           setRecentlyPlayedTracks(res.data.items);
         }
@@ -104,7 +103,6 @@ const HomePageView = () => {
       url: "https://api.spotify.com/v1/me",
     })
       .then((response) => {
-        console.log(response);
         setUsername(response.data.display_name);
       })
       .catch((error) => {
@@ -118,7 +116,7 @@ const HomePageView = () => {
       .then((response) => {
         console.log(response);
 
-        setPlaylist(response.data);
+        setPlaylist(response.data.items);
       })
       .catch((error) => {
         throw "error message: " + error;
@@ -130,12 +128,12 @@ const HomePageView = () => {
     fetchUserPlaylist();
   }, []);
 
-  const parseRecentlyPlayedTracks = (spotifyTracks) => {
-    return spotifyTracks.map((track) => {
+  const parseSongs = (myPlaylists) => {
+    return myPlaylists.map((song) => {
       return {
-        name: track.track.name,
-        image: track.track.album.images[0].url,
-        link: track.track.uri,
+        name: song.track.name,
+        image: song.track.album.images[0].url,
+        link: song.track.uri,
       };
     });
   };
@@ -145,10 +143,10 @@ const HomePageView = () => {
       <Header username={username} />
       <div className="px-4">
         <MusicCardContainer
-          items={parseRecentlyPlayedTracks(recentlyPlayedTracks)}
+          items={parseSongs(recentlyPlayedTracks)}
           title="Recently played tracks"
         />
-        <MusicCardContainer items={mockItems} title={mockTitle} />
+        <MusicCardContainer items={parseSongs(playlist)} title="My playlist" />
         <MusicCardContainer items={mockItems} title={mockTitle} />
       </div>
     </div>
