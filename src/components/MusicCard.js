@@ -8,7 +8,7 @@ const MusicCard = ({ info }) => {
         <div>
         <img  src={info.image} alt={info.name} />
         </div>
-        <div className='bg-white text-gray-900 px-2 py-1'>
+        <div className='bg-white text-gray-900 px-2 py-1 truncate'>
           <small>{info.name}</small>
         </div>
       </div>
