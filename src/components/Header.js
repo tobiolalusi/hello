@@ -3,8 +3,8 @@ import React from 'react'
 const Header = () => {
 
     return (
-        <div>
-          <img src='/spotify_logo.png' alt='spotify_logo'/>
+        <div className='p-4'>
+          <img className='h-10' src='/spotify_logo.png' alt='spotify_logo'/>
         </div>
     )
 }
