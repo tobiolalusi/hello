@@ -7,7 +7,6 @@ import {CALLBACK_URL, CLIENT_ID, CLIENT_SECRET, LOCAL_STORAGE_SPOTIFY_AUTH} from
 const Callback = (props) => {
 	const queryParams = queryString.parse(props.location.search.substring(1));
 	const code = queryParams['code'];
-	const state = queryParams['state'];
 	const error = queryParams['error'];
 
 	if (error !== undefined) {
