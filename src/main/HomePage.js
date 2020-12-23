@@ -79,8 +79,10 @@ const HomePage = () => {
 };
 
 const HomePageView = () => {
-	const [recentlyPlayedTracks, setRecentlyPlayedTracks] = useState([]);
-	const [username, setUsername] = useState('fam')
+  const [recentlyPlayedTracks, setRecentlyPlayedTracks] = useState([]);
+  const [username, setUsername] = useState("fam");
+  const [playlist, setPlaylist] = useState([]);
+  const [trending, setTrending] = useState([]);
   const fetchRecentlyPlayed = () => {
     axios
       .get(`https://api.spotify.com/v1/me/player/recently-played?limit=10`)
@@ -101,18 +103,31 @@ const HomePageView = () => {
       method: "GET",
       url: "https://api.spotify.com/v1/me",
     })
-		.then((response) => {
-			console.log(response)	
-			setUsername(response.data.display_name)
-		})
+      .then((response) => {
+        console.log(response);
+        setUsername(response.data.display_name);
+      })
       .catch((error) => {
         throw "Spotify returned an error: " + error;
       });
   };
 
+  const fetchUserPlaylist = () => {
+    axios
+      .get("https://api.spotify.com/v1/me/tracks?limit=10")
+      .then((response) => {
+        console.log(response);
+
+        setPlaylist(response.data);
+      })
+      .catch((error) => {
+        throw "error message: " + error;
+      });
+  };
   useEffect(() => {
     fetchUserData();
     fetchRecentlyPlayed();
+    fetchUserPlaylist();
   }, []);
 
   const parseRecentlyPlayedTracks = (spotifyTracks) => {
@@ -127,7 +142,7 @@ const HomePageView = () => {
 
   return (
     <div>
-		  <Header username={username} />
+      <Header username={username} />
       <div className="px-4">
         <MusicCardContainer
           items={parseRecentlyPlayedTracks(recentlyPlayedTracks)}
